@@ -1,7 +1,5 @@
 // TODO: Include packages needed for this application
 
-
-
 // sections:
 // title
 // tableofcontents (clickeable hyperlinks)
@@ -23,7 +21,7 @@ const questions = [
         name: 'projectname',
     },
     {
-        type: 'checkbox',
+        type: 'list',
         message: 'which licesnse would you like to use?',
         name: 'license',
         choices: [
@@ -44,21 +42,26 @@ const questions = [
     },
 ]
 
-
-// TODO: Create an array of questions for user input
-// const questions = [];
-
 // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
+function writeToFile(questions) {
+    const { projectname, license, githubun, email } = questions
+    const fileName = `${projectname.toLowerCase().split(' ').join('')}.md`
+    console.log(fileName);
+    console.log(projectname);
+    console.log(license);
+    console.log(githubun);
+    console.log(email);
+    fs.writeFile(fileName, `${projectname}`, (err) =>
+        err ? console.error(err) : console.log('written to file')
+    );
+}
 
 // TODO: Create a function to initialize app
 function init() {
     inquirer
         .prompt(questions)
         .then((response) =>
-            response.confirm === response.password
-                ? console.log('Success!')
-                : console.log('You forgot your password already?!')
+            writeToFile(response)
         );
 }
 
