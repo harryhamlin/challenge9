@@ -2,6 +2,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown.js');
+const { builtinModules } = require('module');
 
 // inquirer questions in the command line
 const questions = [
@@ -72,4 +73,7 @@ function init() {
 }
 
 // Function call to initialize app
-init();
+
+module.exports = init
+
+
