@@ -1,14 +1,8 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-
 let badge;
 let link;
-let licenseSection;
 
-function renderLicenseBadge(license) {
-  if (!license) {
-    badge === null;
-  } else {
+const renderLicenseBadge = (license) => {
+  !license ? badge === null : (
     license === 'Apache 2.0' ? badge = 'https://img.shields.io/badge/License-Apache_2.0-blue.svg' :
       license === 'Boost 1.0' ? badge = 'https://img.shields.io/badge/License-Boost_1.0-lightblue.svg' :
         license === 'BSD 3-Clause' ? badge = 'https://img.shields.io/badge/License-BSD_3--Clause-blue.svg' :
@@ -16,17 +10,13 @@ function renderLicenseBadge(license) {
             license === 'Eclipse Public License 1.0' ? badge = 'https://img.shields.io/badge/License-EPL_1.0-red.svg' :
               license === 'MIT' ? badge = 'https://img.shields.io/badge/License-MIT-yellow.svg' :
                 license === 'MPL-2.0' ? badge = 'https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg' :
-                  badge = 'https://img.shields.io/badge/License-Perl-0298c3.svg';
-  }
+                  badge = 'https://img.shields.io/badge/License-Perl-0298c3.svg'
+  )
   return badge
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {
-  if (!license) {
-    license === null;
-  } else {
+const renderLicenseLink = (license) => {
+  !license ? license === null : (
     license === 'Apache 2.0' ? link = 'https://opensource.org/licenses/Apache-2.0' :
       license === 'Boost 1.0' ? link = 'https://www.boost.org/LICENSE_1_0.txt' :
         license === 'BSD 3-Clause' ? link = 'https://opensource.org/licenses/BSD-3-Clause' :
@@ -34,40 +24,59 @@ function renderLicenseLink(license) {
             license === 'Eclipse Public License 1.0' ? link = 'https://opensource.org/licenses/EPL-1.0' :
               license === 'MIT' ? link = 'https://opensource.org/licenses/MIT' :
                 license === 'MPL-2.0' ? link = 'https://opensource.org/licenses/MPL-2.0' :
-                  link = 'https://opensource.org/licenses/Artistic-2.0)';
-  }
+                  link = 'https://opensource.org/licenses/Artistic-2.0)'
+  )
   return link
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license)  {
+const renderLicenseSection = (license) => {
   renderLicenseBadge(license);
   renderLicenseLink(license);
   let licenseSection
-  if (!license) {
-    licenseSection = null
-  } else {
+  !license ? licenseSection = null : (
     licenseSection =
       `
 ## License <img src="${badge}"/>
     
 This project is available under the ${license} license. See <a href="${link}">here</a> for more information
 `
-  }
+    )
   return licenseSection
 }
 
-// TODO: Create a function to generate markdown for README
+const tableOfContents = (license) => {
+  let tableOfContents;
+  license ? tableOfContents = `
+  ## Table of Contents
+1. [License](#license)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Contributing](#contributing)
+5. [Tests](#tests)
+6. [Questions](#questions)
+  ` : tableOfContents = `
+  ## Table of Contents
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Contributing](#contributing)
+4. [Tests](#tests)
+5. [Questions](#questions)
+  `;
+  return tableOfContents;
+}
+
 const generateMarkdown = (questions) => {
   const { projectName, license, githubUN, email } = questions;
-  const section = renderLicenseSection(license);
+  const licenseSection = renderLicenseSection(license);
+  const tableOfContents = tableOfContents(license)
   return `
 # ${projectName}
 
-## Table of Contents
+## Description
 
-${section}
+${tableOfContents}
+
+${licenseSection}
 
 ## Installation
 

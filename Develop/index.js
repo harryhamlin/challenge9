@@ -1,24 +1,19 @@
-// TODO: Include packages needed for this application
-
-// sections:
-// title
-// tableofcontents (clickeable hyperlinks)
-// license (input should be checkboxes)
-// installation
-// usage
-// contributing (input should include github username/output: link to the github page)
-// tests 
-// questions (input should include email address)
-
+// packages required for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = require('./utils/generateMarkdown.js')
+const generateMarkdown = require('./utils/generateMarkdown.js');
 
+// inquirer questions in the command line
 const questions = [
     {
         type: 'input',
         message: 'what is the name of your project?',
         name: 'projectName',
+    },
+    {
+        type: 'input',
+        message: 'provide a project description',
+        name: 'desctription'
     },
     {
         type: 'list',
@@ -38,6 +33,16 @@ const questions = [
     },
     {
         type: 'input',
+        message: 'describe the usage of this app',
+        name: 'usage'
+    },
+    {
+        type: 'input',
+        message: 'provide description of tests for project',
+        name: 'tests'
+    },
+    {
+        type: 'input',
         message: 'what is your github username?',
         name: 'githubUN',
     },
@@ -48,16 +53,16 @@ const questions = [
     },
 ]
 
-// TODO: Create a function to write README file
+// function that writes the markdown to the README.md file from the export module from generateMarkdown
 function writeToFile(questions) {
-    const { projectName } = questions
-    const fileName = `${projectName.toLowerCase().split(' ').join('')}.md`
-    fs.writeFile(fileName, generateMarkdown.generateMarkdown(questions), { flag: 'wx' }, (err) =>
+    // const { projectName } = questions;
+    // const fileName = `${projectName.toLowerCase().split(' ').join('')}.md`;
+    fs.writeFile('README.md', generateMarkdown.generateMarkdown(questions), { flag: 'wx' }, (err) =>
         err ? console.error(err) : console.log('written to file')
     );
 }
 
-// TODO: Create a function to initialize app
+// 
 function init() {
     inquirer
         .prompt(questions)
