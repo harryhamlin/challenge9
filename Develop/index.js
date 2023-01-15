@@ -12,28 +12,34 @@
 
 const inquirer = require('inquirer');
 const fs = require('fs');
-
+const generateMarkdown = require('./utils/generateMarkdown.js')
 
 const questions = [
     {
         type: 'input',
         message: 'what is the name of your project?',
-        name: 'projectname',
+        name: 'projectName',
     },
     {
         type: 'list',
         message: 'which licesnse would you like to use?',
         name: 'license',
         choices: [
-            { name: 'this', value: 'this' },
-            { name: 'that', value: 'that' },
-            { name: 'theother', value: 'theother' },
+            { name: 'Apache 2.0'},
+            { name: 'Boost 1.0'},
+            { name: 'BSD 3-Clause'},
+            { name: 'CC0-1.0'},
+            { name: 'Eclipse Public License 1.0'},
+            { name: 'MIT'},
+            { name: 'MPL-2.0'},
+            { name: 'Perl'},
+            { name: 'None', value: null}
         ]
     },
     {
         type: 'input',
         message: 'what is your github username?',
-        name: 'githubun',
+        name: 'githubUN',
     },
     {
         type: 'input',
@@ -44,14 +50,9 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(questions) {
-    const { projectname, license, githubun, email } = questions
-    const fileName = `${projectname.toLowerCase().split(' ').join('')}.md`
-    console.log(fileName);
-    console.log(projectname);
-    console.log(license);
-    console.log(githubun);
-    console.log(email);
-    fs.writeFile(fileName, `${projectname}`, (err) =>
+    const { projectName } = questions
+    const fileName = `${projectName.toLowerCase().split(' ').join('')}.md`
+    fs.writeFile(fileName, generateMarkdown.generateMarkdown(questions), { flag: 'wx' }, (err) =>
         err ? console.error(err) : console.log('written to file')
     );
 }
