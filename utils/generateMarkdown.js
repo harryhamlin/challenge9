@@ -1,6 +1,8 @@
+// globally calls need variables
 let badge;
 let link;
 
+// selects badge depending on selected license
 const renderLicenseBadge = (license) => {
   !license ? badge === null : (
     license === 'Apache 2.0' ? badge = 'https://img.shields.io/badge/License-Apache_2.0-blue.svg' :
@@ -15,6 +17,7 @@ const renderLicenseBadge = (license) => {
   return badge
 }
 
+// selects license link to text depending on selected license
 const renderLicenseLink = (license) => {
   !license ? license === null : (
     license === 'Apache 2.0' ? link = 'https://opensource.org/licenses/Apache-2.0' :
@@ -29,11 +32,12 @@ const renderLicenseLink = (license) => {
   return link
 }
 
+// renders the license section of the readme
 const renderLicenseSection = (license) => {
   renderLicenseBadge(license);
   renderLicenseLink(license);
   let licenseSection
-  !license ? licenseSection = null : (
+  !license ? licenseSection = '' : (
     licenseSection =
       `
 ## License <img src="${badge}"/>
@@ -44,6 +48,7 @@ This project is available under the ${license} license. See <a href="${link}">he
   return licenseSection
 }
 
+// generates table-of-contents depending on if a license is selected of not
 const tableOfContentsFx = (license) => {
   let tableOfContents;
   license ? tableOfContents = `
@@ -65,14 +70,17 @@ const tableOfContentsFx = (license) => {
   return tableOfContents;
 }
 
+// generates the markdown for the readme 
 const generateMarkdown = (questions) => {
-  const { projectName, license, githubUN, email } = questions;
+  const { projectName, description, usage, tests, githubUN, email } = questions;
   const licenseSection = renderLicenseSection(license);
   const tableOfContents = tableOfContentsFx(license)
   return `
 # ${projectName}
 
 ## Description
+
+${description}
 
 ${tableOfContents}
 
@@ -82,11 +90,15 @@ ${licenseSection}
 
 ## Usage
 
+${usage}
+
 ## Contributing
 
 <a href="https://github.com/${githubUN}">github.com/${githubUN}</a>
 
 ## Tests
+
+${tests}
 
 ## Questions
 
