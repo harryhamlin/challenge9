@@ -72,7 +72,7 @@ const tableOfContentsFx = (license) => {
 
 // generates the markdown for the readme 
 const generateMarkdown = (questions) => {
-  const { projectName, description, usage, tests, githubUN, email } = questions;
+  const { projectName, description, license, usage, tests, githubUN, email } = questions;
   const licenseSection = renderLicenseSection(license);
   const tableOfContents = tableOfContentsFx(license)
   return `
@@ -107,4 +107,5 @@ For any question, please reach out directly to <a href="mailto:${email}" target=
 `;
 }
 
+// module exports to index.js
 module.exports = { generateMarkdown }

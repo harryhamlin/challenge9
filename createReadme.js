@@ -56,7 +56,7 @@ const questions = [
 
 // function that writes the markdown to the README.md file from the export module from generateMarkdown, the flag argument won't execute the action is a file entitled README.md already exists
 function writeToFile(questions) {
-    fs.writeFile('../../README.md', generateMarkdown.generateMarkdown(questions), { flag: 'wx' }, (err) =>
+    fs.writeFile('../README.md', generateMarkdown.generateMarkdown(questions), { flag: 'wx' }, (err) =>
         err ? console.error(err) : console.log('written to file')
     );
 }
@@ -75,5 +75,3 @@ generateReadme();
 
 // exports the function for possible useage
 module.exports = generateReadme;
-
-
