@@ -52,19 +52,12 @@ const questions = [
         message: 'what is your email address?',
         name: 'email',
     },
-    {
-        type: 'confirm',
-        message: 'would you like this module deleted on completion',
-        name: 'delete'
-    },
 ]
 
 // function that writes the markdown to the README.md file from the export module from generateMarkdown, the flag argument won't execute the action is a file entitled README.md already exists
 function writeToFile(questions) {
-    fs.writeFile('../../README.md', generateMarkdown.generateMarkdown(questions), { flag: 'wx' }, (err) =>
+    fs.writeFile('./README.md', generateMarkdown.generateMarkdown(questions), { flag: 'wx' }, (err) =>
         err ? console.error(err) : console.log('written to file'));
-    (!questions.delete) ? console.log('module not deleted') : fs.unlink('../readme-generator-harryhamlin/',(err) =>
-    err ? console.error(err) : console.log('module deleted'))
 }
 
 // function to initialize application
