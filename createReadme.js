@@ -33,6 +33,11 @@ const questions = [
         ]
     },
     {
+        type: 'installation',
+        message: 'describe how users are going to install this app',
+        name: 'installation'
+    },
+    {
         type: 'input',
         message: 'describe the usage of this app',
         name: 'usage'

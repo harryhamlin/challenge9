@@ -72,7 +72,7 @@ const tableOfContentsFx = (license) => {
 
 // generates the markdown for the readme 
 const generateMarkdown = (questions) => {
-  const { projectName, description, license, usage, tests, githubUN, email } = questions;
+  const { projectName, description, license, installation, usage, tests, githubUN, email } = questions;
   const licenseSection = renderLicenseSection(license);
   const tableOfContents = tableOfContentsFx(license)
   return `
@@ -87,6 +87,8 @@ ${tableOfContents}
 ${licenseSection}
 
 ## Installation
+
+${installation}
 
 ## Usage
 
