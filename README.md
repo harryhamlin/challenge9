@@ -36,6 +36,8 @@ The user can also include the exported function directly in their code by includ
 
 <span style='color: grey'>const createReadme = require('@harryhamlin/readme-generator'); createReadme </span>
 
+For a more detailed video walkthrough, please refer to <a href="https://youtu.be/nVTJV6GV2Wk">this video</a>
+
 ## Contributing
 
 <a href="https://github.com/harryhamlin">github.com/harryhamlin</a>
