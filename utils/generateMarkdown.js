@@ -104,7 +104,7 @@ ${tests}
 
 ## Questions
 
-For any question, please reach out directly to <a href="mailto:${email}" target="_blank">${email}</a>.
+For any questions, please reach out directly to <a href="mailto:${email}" target="_blank">${email}</a>.
 
 `;
 }
